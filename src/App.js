@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Clock from './components/Clock';
+import Stopwatch from './components/Stopwatch';
 
 function App() {
+  const [clockType, setClockType] = useState(1);
+
+  const changeClock = () => {
+    if (clockType === 1) {
+      setClockType(0);
+    } else {
+      setClockType(1);
+    }
+    console.log(clockType);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {clockType ? <Clock /> : <Stopwatch />}
+      <button onClick={changeClock}> Change clock </button>
     </div>
   );
 }
